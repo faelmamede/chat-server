@@ -29,8 +29,8 @@ const sendNotificationToReceiver = (sender, receiver) => {
     user.notifiedByUser(sender);
 }
 
-const getAllMessagesInAChat = ({ from, to }) => {
-    const peopleTalking = [from, to].sort();
+const getAllMessagesInAChat = (talkers) => {
+    const peopleTalking = talkers.sort();
     const openedChat = server.getOpenedChat(peopleTalking);
     if (!openedChat) {
         return [];

@@ -21,8 +21,8 @@ const parseNotificationsInfo = (req, res, next) => {
     next();
 }
 
-const parseMessageInfo = (req, res, next) => {
-    if (!req.body.from || !req.body.to) {
+const parseMessageSentInfo = (req, res, next) => {
+    if (!req.body.from || !req.body.to || !req.body.message) {
         return res.send('Missing arguments').status(400);
     }
     if (!req.messageObj) {
@@ -30,7 +30,19 @@ const parseMessageInfo = (req, res, next) => {
     }
     req.messageObj.from = req.body.from;
     req.messageObj.to = req.body.to;
-    req.messageObj.message = req.body.message ? req.body.message : " ";
+    req.messageObj.message = req.body.message;
+
+    next();
+}
+
+const parseChatInfo = (req, res, next) => {
+    if (!req.body.talkers) {
+        return res.send('Missing arguments').status(400);
+    }
+    if (!req.messageObj) {
+        req.chatInfo = {};
+    }
+    req.chatInfo.users = req.body.talkers;
 
     next();
 }
@@ -47,6 +59,7 @@ const getUnsedPort = (req, res, next) => {
 module.exports = {
     parseUserInfo,
     getUnsedPort,
-    parseMessageInfo,
+    parseMessageSentInfo,
+    parseChatInfo,
     parseNotificationsInfo
 }
