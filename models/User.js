@@ -37,6 +37,7 @@ const getAllConnectedUsers = () => {
     for (const userKey in __users) {
         const user = { 
             nickname: __users[userKey].nickname,
+            status: 'online'
         }
         users.push(user);
     }

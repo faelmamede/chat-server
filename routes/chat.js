@@ -6,10 +6,10 @@ const { sendMessage, getAllMessagesInAChat } = require('../controllers/chat');
 
 router.post('/sendMessage', parseMessageSentInfo, async (req, res) => {
      const timeMessageWasSent = await sendMessage(req.messageObj);
-     res.send(`OK! Message sent at ${timeMessageWasSent}`).status(200);
+     res.send(`${timeMessageWasSent}`).status(200);
 })
 
-router.get('/getAllMessages', parseChatInfo, async (req, res) => {
+router.post('/getAllMessages', parseChatInfo, async (req, res) => {
      const messages = await getAllMessagesInAChat(req.chatInfo.users);
      res.send(messages).status(200);
 })

@@ -8,7 +8,7 @@ router.get('/getConnectedUsers', (req, res) => {
      res.send(getAllUsers()).status(200);
 })
 
-router.get('/getNotifications', parseUserInfo ,(req, res) => {
+router.post('/getNotifications', parseUserInfo ,(req, res) => {
      const nickname = req.user.nickname;
      res.send(getNotifications(nickname)).status(200);
 })
