@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const serverPort = process.env.PORT ? process.env.PORT : 3001;
+const serverPort = process.env.PORT ? process.env.PORT : 3000;
 
 const loginRoutes = require('./routes/login');
 const userRoutes = require('./routes/user');
